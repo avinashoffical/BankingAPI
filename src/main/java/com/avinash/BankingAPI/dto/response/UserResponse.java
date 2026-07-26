@@ -1,4 +1,4 @@
 package com.avinash.BankingAPI.dto.response;
 
-public class JwtResposne {
+public class UserResponse {
 }
