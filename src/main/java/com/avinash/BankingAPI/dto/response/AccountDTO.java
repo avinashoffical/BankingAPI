@@ -1,12 +1,21 @@
 package com.avinash.BankingAPI.dto.response;
 
+import com.avinash.BankingAPI.entity.enums.AccountStatus;
 import com.avinash.BankingAPI.entity.enums.AccountType;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class AccountDTO {
+    private Long accountId;
+
     private String accountNumber;
+
     private BigDecimal balance;
-    private String accountType;
-    private String status;
+
+    private AccountType accountType;
+
+    private AccountStatus status;
+
+    private LocalDateTime createdAt;
 }

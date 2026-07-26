@@ -2,21 +2,19 @@ package com.avinash.BankingAPI.dto.request;
 
 import com.avinash.BankingAPI.entity.enums.PaymentMethod;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
-public class DepositRequest {
-    @NotBlank
-    private String accountNumber;
-
-    @NotNull
-    @DecimalMin(value = "1")
+@Data
+public class LoanRepaymentRequest {
+    @NotNull(message = "Repayment amount is required")
+    @DecimalMin(value = "1", message = "Amount must be greater than zero")
     private BigDecimal amount;
 
-    @NotNull
+    @NotNull(message = "Payment method is required")
     private PaymentMethod paymentMethod;
 
     @Size(max = 200)

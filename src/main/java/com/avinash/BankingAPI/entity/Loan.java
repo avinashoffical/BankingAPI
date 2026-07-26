@@ -8,6 +8,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,10 +23,19 @@ public class Loan {
     private BigDecimal loanAmount;
 
     @Positive
+    private BigInteger loanNumber;
+
+    @Positive
     private Double interestRate;
 
     @Positive
     private Integer tenureMonths;
+
+    @Positive
+    private Integer monthlyEMI;
+
+    @Positive
+    private BigDecimal remainingAmount;
 
     @Enumerated(EnumType.STRING)
     private LoanType loanType;
@@ -34,7 +44,10 @@ public class Loan {
     private LoanStatus status;
 
     @CreationTimestamp
-    private LocalDateTime appliedAt;
+    private LocalDateTime applicationDate;
+
+    @CreationTimestamp
+    private LocalDateTime approvedDate;
 
 //    private Customer customer;
 }

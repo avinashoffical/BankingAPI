@@ -1,5 +1,6 @@
 package com.avinash.BankingAPI.entity;
 
+import com.avinash.BankingAPI.entity.enums.PaymentMethod;
 import com.avinash.BankingAPI.entity.enums.TransactionStatus;
 import com.avinash.BankingAPI.entity.enums.TransactionType;
 import jakarta.persistence.*;
@@ -30,6 +31,9 @@ public class Transaction {
 
     @Enumerated(EnumType.STRING)
     private TransactionStatus transactionStatus;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod  paymentMethod;
 
     private String senderAccountNumber;
 
