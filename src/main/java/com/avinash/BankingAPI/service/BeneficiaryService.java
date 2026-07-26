@@ -1,4 +1,4 @@
 package com.avinash.BankingAPI.service;
 
-public interface CustomerService {
+public interface BeneficiaryService {
 }

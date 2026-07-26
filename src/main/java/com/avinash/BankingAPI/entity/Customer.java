@@ -38,4 +38,7 @@ public class Customer {
     @Pattern(regexp = "[A-Z]{5}[0-9]{4}[A-Z]1")
     private String panNumber;
 
+//    private User user;
+//    private Account account;
+
 }

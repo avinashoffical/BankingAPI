@@ -30,6 +30,10 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionStatus transactionStatus;
 
+    private String senderAccountNumber;
+
+    private String recipientAccountNumber;
+
     @Size(min = 2, max = 200)
     private String remarks;
 

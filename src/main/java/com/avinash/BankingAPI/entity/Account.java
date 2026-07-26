@@ -31,4 +31,7 @@ public class Account {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+//    private Transaction transaction;
+//    private Customer customer;
 }

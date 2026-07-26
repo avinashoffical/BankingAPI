@@ -1,6 +1,7 @@
 package com.avinash.BankingAPI.entity;
 
 import com.avinash.BankingAPI.entity.enums.LoanStatus;
+import com.avinash.BankingAPI.entity.enums.LoanType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
@@ -26,8 +27,13 @@ public class Loan {
     private Integer tenureMonths;
 
     @Enumerated(EnumType.STRING)
+    private LoanType loanType;
+
+    @Enumerated(EnumType.STRING)
     private LoanStatus status;
 
     @CreationTimestamp
     private LocalDateTime appliedAt;
+
+//    private Customer customer;
 }
