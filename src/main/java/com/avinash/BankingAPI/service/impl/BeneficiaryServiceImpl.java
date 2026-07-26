@@ -1,7 +1,9 @@
 package com.avinash.BankingAPI.service.impl;
 
+import com.avinash.BankingAPI.service.BeneficiaryService;
+import com.avinash.BankingAPI.service.CustomerService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BeneficiaryServiceImpl {
+public class BeneficiaryServiceImpl implements BeneficiaryService {
 }

@@ -15,15 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class AuthServiceImpl implements AuthService {
-    private final UserRepository userRepository;
-    private final CustomerRepository customerRepository;
-    private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
-    private final JwtProvider jwtProvider;
+
     @Override
     public APIResponse register(RegisterRequest registerRequest) {
         return null;
