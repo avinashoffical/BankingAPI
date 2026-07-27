@@ -34,9 +34,4 @@ public class CustomerDTO {
 
     private String panNumber;
 
-//    private String username;
-
-    private String accountStatus;
-
-    private String accountType;
 }

@@ -23,19 +23,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO getLoggedInCustomer() {
+//        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+//        Customer customer = customerRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+//        return modelMapper.map(customer, CustomerDTO.class);
         return null;
     }
 
     @Override
     public CustomerDTO getCustomerById(Long customerId) {
-
-        return null;
+        Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found with id: " + customerId));
+        return modelMapper.map(customer, CustomerDTO.class);
     }
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
         List<Customer> customers = customerRepository.findAll();
-
+        if (customers.isEmpty()) {
+            throw new RuntimeException("No customers found");
+        }
         return customers.stream().map(customer -> modelMapper.map(customer, CustomerDTO.class)).toList();
     }
 
@@ -45,13 +50,19 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("Customer already exists with email :" +createCustomerRequest.getEmail());
         }
         Customer customer = modelMapper.map(createCustomerRequest,Customer.class);
-        customer.setAccountStatus(AccountStatus.ACTIVE);
-        customer.setAccountType(createCustomerRequest.getAccountType());
         return modelMapper.map(customerRepository.save(customer),CustomerDTO.class);
     }
 
     @Override
     public CustomerDTO updateLoggedInCustomer(UpdateCustomerRequest updateCustomerRequest) {
+//        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+//        Customer customer = customerRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+//        customer.setFirstName(updateCustomerRequest.getFirstName());
+//        customer.setLastName(updateCustomerRequest.getLastName());
+//        customer.setEmail(updateCustomerRequest.getEmail());
+//        customer.setAddress(updateCustomerRequest.getAddress());
+//        customer.setPhoneNumber(updateCustomerRequest.getPhoneNumber());
+//        return modelMapper.map(customerRepository.save(customer), CustomerDTO.class);
         return null;
     }
 

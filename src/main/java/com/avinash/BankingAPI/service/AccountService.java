@@ -4,14 +4,13 @@ import com.avinash.BankingAPI.dto.request.CreateAccountRequest;
 import com.avinash.BankingAPI.dto.response.APIResponse;
 import com.avinash.BankingAPI.dto.response.AccountDTO;
 import com.avinash.BankingAPI.dto.response.BalanceResponse;
-import jakarta.validation.Valid;
 
 import java.util.List;
 
 public interface AccountService {
     List<AccountDTO> getMyAccount();
 
-    AccountDTO getAccount(Long accountId);
+    AccountDTO getAccountById(Long accountId);
 
     AccountDTO getByAccountNumber(String accountNumber);
 
@@ -21,7 +20,7 @@ public interface AccountService {
 
     List<AccountDTO> getAccountOfCustomer();
 
-    AccountDTO createAccount(@Valid CreateAccountRequest createAccountRequest);
+    AccountDTO createAccount(Long customerId, CreateAccountRequest createAccountRequest);
 
     APIResponse closeAccount(Long accountId);
 

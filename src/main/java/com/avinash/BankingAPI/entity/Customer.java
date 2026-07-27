@@ -45,12 +45,6 @@ public class Customer {
 //    @Pattern(regexp = "[A-Z]{5}[0-9]{4}[A-Z]$")
     private String panNumber;
 
-    @Enumerated(EnumType.STRING)
-    private AccountType accountType;
-
-    @Enumerated(EnumType.STRING)
-    private AccountStatus accountStatus;
-
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

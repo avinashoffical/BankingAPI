@@ -2,10 +2,12 @@ package com.avinash.BankingAPI.dto.response;
 
 import com.avinash.BankingAPI.entity.enums.AccountStatus;
 import com.avinash.BankingAPI.entity.enums.AccountType;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Data
 public class AccountDTO {
     private Long accountId;
 

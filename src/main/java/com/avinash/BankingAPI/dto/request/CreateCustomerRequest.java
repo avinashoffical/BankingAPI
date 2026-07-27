@@ -8,15 +8,11 @@ import java.time.LocalDate;
 
 @Data
 public class CreateCustomerRequest {
-    private Long customerId;
-
     private String firstName;
 
     private String lastName;
 
     private String email;
-
-    private AccountType accountType;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;

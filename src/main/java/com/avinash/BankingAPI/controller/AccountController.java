@@ -26,8 +26,8 @@ public class AccountController {
     }
 
     @GetMapping("/{accountId}")
-    public ResponseEntity<AccountDTO> getAccount(@PathVariable Long accountId) {
-        return new ResponseEntity<>(accountService.getAccount(accountId), HttpStatus.OK);
+    public ResponseEntity<AccountDTO> getAccountById(@PathVariable Long accountId) {
+        return new ResponseEntity<>(accountService.getAccountById(accountId), HttpStatus.OK);
     }
 
     @GetMapping("/number/{accountNumber}")
@@ -50,9 +50,9 @@ public class AccountController {
         return new ResponseEntity<>(accountService.getAccountOfCustomer(), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<AccountDTO> createAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest) {
-        return new ResponseEntity<>(accountService.createAccount(createAccountRequest), HttpStatus.CREATED);
+    @PostMapping("/{customerId}")
+    public ResponseEntity<AccountDTO> createAccount(@PathVariable Long customerId,@Valid @RequestBody CreateAccountRequest createAccountRequest) {
+        return new ResponseEntity<>(accountService.createAccount(customerId,createAccountRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{accountId}/close")

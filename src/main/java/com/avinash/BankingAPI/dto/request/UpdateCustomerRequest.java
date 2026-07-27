@@ -13,8 +13,8 @@ public class UpdateCustomerRequest {
     @NotBlank
     private String lastName;
 
-    @Pattern(regexp="^[6-9]\\d{9}$")
-    private String mobileNumber;
+//    @Pattern(regexp="^[6-9]\\d{9}$")
+    private String phoneNumber;
 
     @Email
     private String email;
