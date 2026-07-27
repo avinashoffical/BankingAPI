@@ -6,7 +6,6 @@ import com.avinash.BankingAPI.dto.response.JwtResponse;
 import com.avinash.BankingAPI.dto.response.UserResponse;
 import com.avinash.BankingAPI.service.AuthService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

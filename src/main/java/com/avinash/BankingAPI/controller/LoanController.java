@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class LoanController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<LoanDTO>> getAllLoan() {
         return new ResponseEntity<>(loanService.getAllLoan(), HttpStatus.OK);
     }
@@ -58,13 +58,13 @@ public class LoanController {
     }
 
     @PutMapping("/{loanId}/approve")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<APIResponse> approveLoan(@PathVariable Long loanId) {
         return new ResponseEntity<>(loanService.approveLoan(loanId), HttpStatus.OK);
     }
 
     @PutMapping("/{loanId}/reject")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<APIResponse> rejectLoan(@PathVariable Long loanId) {
         return new ResponseEntity<>(loanService.rejectLoan(loanId), HttpStatus.OK);
     }
