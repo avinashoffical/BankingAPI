@@ -44,4 +44,7 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @OneToOne(mappedBy = "user")
+    private Customer customer;
+
 }

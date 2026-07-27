@@ -44,4 +44,12 @@ public class Transaction {
 
     @CreationTimestamp
     private LocalDateTime transactionDate;
+
+    @ManyToOne
+    @JoinColumn(name = "from_account_id")
+    private Account fromAccount;
+
+    @ManyToOne
+    @JoinColumn(name = "to_account_id")
+    private Account toAccount;
 }

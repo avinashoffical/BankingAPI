@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,6 +34,13 @@ public class Account {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-//    private Transaction transaction;
-//    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "fromAccount")
+    private List<Transaction> outgoingTransactions;
+
+    @OneToMany(mappedBy = "toAccount")
+    private List<Transaction> incomingTransactions;
 }

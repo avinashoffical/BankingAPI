@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -49,5 +50,10 @@ public class Loan {
     @CreationTimestamp
     private LocalDateTime approvedDate;
 
-//    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "loan")
+    private List<LoanPayment> loanPayments;
 }

@@ -29,4 +29,8 @@ public class Beneficiary {
 
     @NotBlank
     private String bankName;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }
