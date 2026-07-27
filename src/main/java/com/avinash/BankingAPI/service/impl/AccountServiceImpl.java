@@ -69,7 +69,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<AccountDTO> getAccountOfCustomer() {
+    public List<AccountDTO> getAccountOfCustomer(Long customerId) {
         return List.of();
     }
 

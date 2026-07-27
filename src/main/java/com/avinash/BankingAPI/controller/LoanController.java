@@ -7,7 +7,7 @@ import com.avinash.BankingAPI.dto.response.EmiScheduleDTO;
 import com.avinash.BankingAPI.dto.response.LoanDTO;
 import com.avinash.BankingAPI.service.LoanService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,9 +17,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/loans")
+@RequiredArgsConstructor
 public class LoanController {
-    @Autowired
-    private LoanService loanService;
+    private final LoanService loanService;
 
     @GetMapping("/my")
     public ResponseEntity<List<LoanDTO>> getMyLoan() {
@@ -37,7 +37,6 @@ public class LoanController {
     }
 
     @GetMapping
-//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<LoanDTO>> getAllLoan() {
         return new ResponseEntity<>(loanService.getAllLoan(), HttpStatus.OK);
     }
@@ -58,13 +57,11 @@ public class LoanController {
     }
 
     @PutMapping("/{loanId}/approve")
-//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<APIResponse> approveLoan(@PathVariable Long loanId) {
         return new ResponseEntity<>(loanService.approveLoan(loanId), HttpStatus.OK);
     }
 
     @PutMapping("/{loanId}/reject")
-//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<APIResponse> rejectLoan(@PathVariable Long loanId) {
         return new ResponseEntity<>(loanService.rejectLoan(loanId), HttpStatus.OK);
     }

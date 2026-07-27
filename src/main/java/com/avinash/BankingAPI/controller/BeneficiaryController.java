@@ -5,7 +5,7 @@ import com.avinash.BankingAPI.dto.response.APIResponse;
 import com.avinash.BankingAPI.dto.response.BeneficiaryDTO;
 import com.avinash.BankingAPI.service.BeneficiaryService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/beneficiaries")
+@RequiredArgsConstructor
 public class BeneficiaryController {
-    @Autowired
-    private BeneficiaryService beneficiaryService;
+    private final BeneficiaryService beneficiaryService;
 
     @GetMapping
     public ResponseEntity<List<BeneficiaryDTO>> getMyBeneficiary() {

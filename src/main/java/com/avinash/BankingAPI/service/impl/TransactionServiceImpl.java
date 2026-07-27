@@ -22,7 +22,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public TransactionDTO getByReference(String referenceNumber) {
+    public TransactionDTO getTransactionByReference(String referenceNumber) {
         return null;
     }
 

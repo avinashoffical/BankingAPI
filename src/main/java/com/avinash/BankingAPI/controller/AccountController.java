@@ -47,7 +47,7 @@ public class AccountController {
 
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<AccountDTO>> getAccountOfCustomer(@PathVariable Long customerId) {
-        return new ResponseEntity<>(accountService.getAccountOfCustomer(), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.getAccountOfCustomer(customerId), HttpStatus.OK);
     }
 
     @PostMapping("/{customerId}")

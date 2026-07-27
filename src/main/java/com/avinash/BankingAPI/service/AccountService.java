@@ -18,7 +18,7 @@ public interface AccountService {
 
     List<AccountDTO> getAllAccount();
 
-    List<AccountDTO> getAccountOfCustomer();
+    List<AccountDTO> getAccountOfCustomer(Long customerId);
 
     AccountDTO createAccount(Long customerId, CreateAccountRequest createAccountRequest);
 

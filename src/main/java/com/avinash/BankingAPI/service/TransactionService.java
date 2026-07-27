@@ -13,7 +13,7 @@ public interface TransactionService {
 
     TransactionDTO getTransaction(Long transactionId);
 
-    TransactionDTO getByReference(String referenceNumber);
+    TransactionDTO getTransactionByReference(String referenceNumber);
 
     List<TransactionDTO> getStatement();
 

@@ -7,7 +7,7 @@ import com.avinash.BankingAPI.dto.response.TransactionDTO;
 import com.avinash.BankingAPI.service.TransactionService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
+@RequiredArgsConstructor
 @Transactional
 public class TransactionController {
-    @Autowired
-    private TransactionService transactionService;
+    private final TransactionService transactionService;
 
     @GetMapping("/history")
     public ResponseEntity<List<TransactionDTO>> getHistory() {
@@ -32,8 +32,8 @@ public class TransactionController {
     }
 
     @GetMapping("/reference/{referenceNumber}")
-    public ResponseEntity<TransactionDTO> getByReference(@PathVariable String referenceNumber) {
-        return new ResponseEntity<>(transactionService.getByReference(referenceNumber), HttpStatus.OK);
+    public ResponseEntity<TransactionDTO> getTransactionByReference(@PathVariable String referenceNumber) {
+        return new ResponseEntity<>(transactionService.getTransactionByReference(referenceNumber), HttpStatus.OK);
     }
 
     @GetMapping("/statement")
