@@ -5,9 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "beneficiaries")
 public class Beneficiary {
     @Id
@@ -24,7 +27,7 @@ public class Beneficiary {
     @NotBlank
     private String accountHolderName;
 
-    @Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$")
+//    @Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$")
     private String ifscCode;
 
     @NotBlank

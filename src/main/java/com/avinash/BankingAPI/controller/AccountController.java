@@ -6,7 +6,7 @@ import com.avinash.BankingAPI.dto.response.AccountDTO;
 import com.avinash.BankingAPI.dto.response.BalanceResponse;
 import com.avinash.BankingAPI.service.AccountService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +15,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/accounts")
+@RequiredArgsConstructor
 public class AccountController {
-
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
     @GetMapping("/my")
     public ResponseEntity<List<AccountDTO>> getMyAccount() {

@@ -1,6 +1,7 @@
 package com.avinash.BankingAPI.repository;
 
 import com.avinash.BankingAPI.entity.Customer;
+import com.avinash.BankingAPI.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +12,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     boolean existsByEmail(String email);
 
     Optional<Customer> findByEmail(String email);
+
+    Optional<Customer> findByUser(User user);
 }

@@ -1,5 +1,8 @@
 package com.avinash.BankingAPI.dto.response;
 
+import lombok.Data;
+
+@Data
 public class BeneficiaryDTO {
     private Long beneficiaryId;
 

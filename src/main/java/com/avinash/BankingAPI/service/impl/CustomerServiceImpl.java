@@ -5,7 +5,6 @@ import com.avinash.BankingAPI.dto.request.UpdateCustomerRequest;
 import com.avinash.BankingAPI.dto.response.APIResponse;
 import com.avinash.BankingAPI.dto.response.CustomerDTO;
 import com.avinash.BankingAPI.entity.Customer;
-import com.avinash.BankingAPI.entity.enums.AccountStatus;
 import com.avinash.BankingAPI.repository.CustomerRepository;
 import com.avinash.BankingAPI.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO createCustomers(CreateCustomerRequest createCustomerRequest) throws Exception {
+    public CustomerDTO createCustomer(CreateCustomerRequest createCustomerRequest) {
         if(customerRepository.existsByEmail(createCustomerRequest.getEmail())){
             throw new RuntimeException("Customer already exists with email :" +createCustomerRequest.getEmail());
         }

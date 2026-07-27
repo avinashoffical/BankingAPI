@@ -4,13 +4,16 @@ import com.avinash.BankingAPI.entity.enums.LoanType;
 import com.avinash.BankingAPI.entity.enums.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
+@Getter
+@Setter
 @Table(name = "loan_payment")
 public class LoanPayment {
     @Id
@@ -30,4 +33,8 @@ public class LoanPayment {
     @ManyToOne
     @JoinColumn(name = "loan_id")
     private Loan loan;
+
+//    @ManyToOne
+//    @JoinColumn(name = "transaction_id")
+//    private Transaction transaction;
 }

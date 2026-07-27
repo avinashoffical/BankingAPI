@@ -16,8 +16,10 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,25 +36,19 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO getAccountById(Long accountId) {
-        Account account = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found with account id:"+accountId));
+        Account account = verifyId(accountId);
         return modelMapper.map(account, AccountDTO.class);
     }
 
     @Override
     public AccountDTO getByAccountNumber(String accountNumber) {
-        Account account = accountRepository.findByAccountNumber(accountNumber);
-        if (account == null) {
-            throw new RuntimeException("Account not found with account number:"+accountNumber);
-        }
+        Account account = verifyAccountNumber(accountNumber);
         return modelMapper.map(account, AccountDTO.class);
     }
 
     @Override
     public BalanceResponse getBalance(String accountNumber) {
-        Account account = accountRepository.findByAccountNumber(accountNumber);
-        if (account == null) {
-            throw new RuntimeException("Account not found with account number:"+accountNumber);
-        }
+        Account account = verifyAccountNumber(accountNumber);
         return BalanceResponse.builder()
                 .accountNumber(accountNumber)
                 .balance(account.getBalance())
@@ -94,37 +90,51 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public APIResponse closeAccount(Long accountId) {
-        Account account = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found with id " + accountId));
+        Account account = verifyId(accountId);
+        if(account.getBalance().compareTo(BigDecimal.ZERO)> 0){
+            throw new RuntimeException("Withdraw or transfer remaining balance before closing account.");
+        }
         account.setStatus(AccountStatus.CLOSED);
         accountRepository.save(account);
         return APIResponse.builder()
                 .success(true)
-                .message("Account CLOSED")
+                .message("Account closed successfully.")
                 .timestamp(LocalDateTime.now())
                 .build();
     }
 
     @Override
     public APIResponse freezeAccount(Long accountId) {
-        Account account = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found with id " + accountId));
+        Account account = verifyId(accountId);
         account.setStatus(AccountStatus.FREEZE);
         accountRepository.save(account);
         return APIResponse.builder()
                 .success(true)
-                .message("Account FREEZE")
+                .message("Account frozen successfully.")
                 .timestamp(LocalDateTime.now())
                 .build();
     }
 
     @Override
     public APIResponse activateAccount(Long accountId) {
-        Account account = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found with id " + accountId));
+        Account account = verifyId(accountId);
+        if(account.getStatus() == AccountStatus.CLOSED){
+            throw new RuntimeException("Closed account cannot be activated.");
+        }
         account.setStatus(AccountStatus.ACTIVE);
         accountRepository.save(account);
         return APIResponse.builder()
                 .success(true)
-                .message("Account ACTIVATED")
+                .message("Account activated successfully.")
                 .timestamp(LocalDateTime.now())
                 .build();
+    }
+
+    private Account verifyId(Long accountId) {
+        return accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found with id " + accountId));
+    }
+
+    private Account verifyAccountNumber(String accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new RuntimeException("Account not found with account number:"+accountNumber));
     }
 }

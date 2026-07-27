@@ -6,12 +6,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "customer")
 public class Customer {
     @Id

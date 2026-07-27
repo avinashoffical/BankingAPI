@@ -5,6 +5,8 @@ import com.avinash.BankingAPI.entity.enums.LoanType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -13,7 +15,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "loans")
 public class Loan {
     @Id
@@ -23,8 +26,8 @@ public class Loan {
     @Positive
     private BigDecimal loanAmount;
 
-    @Positive
-    private BigInteger loanNumber;
+    @Column(unique = true, nullable = false)
+    private String loanNumber;
 
     @Positive
     private Double interestRate;
@@ -33,7 +36,7 @@ public class Loan {
     private Integer tenureMonths;
 
     @Positive
-    private Integer monthlyEMI;
+    private BigInteger monthlyEMI;
 
     @Positive
     private BigDecimal remainingAmount;
@@ -47,7 +50,6 @@ public class Loan {
     @CreationTimestamp
     private LocalDateTime applicationDate;
 
-    @CreationTimestamp
     private LocalDateTime approvedDate;
 
     @ManyToOne

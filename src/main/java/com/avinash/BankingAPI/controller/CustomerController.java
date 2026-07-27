@@ -37,7 +37,7 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CreateCustomerRequest createCustomerRequest) throws Exception {
-        return new ResponseEntity<>(customerService.createCustomers(createCustomerRequest),HttpStatus.OK);
+        return new ResponseEntity<>(customerService.createCustomer(createCustomerRequest),HttpStatus.CREATED);
     }
 
     @PutMapping("/profile")

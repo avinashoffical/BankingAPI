@@ -15,7 +15,7 @@ public interface CustomerService {
 
     List<CustomerDTO> getAllCustomers();
 
-    CustomerDTO createCustomers(CreateCustomerRequest createCustomerRequest) throws Exception;
+    CustomerDTO createCustomer(CreateCustomerRequest createCustomerRequest) throws Exception;
 
     CustomerDTO updateLoggedInCustomer(@Valid UpdateCustomerRequest updateCustomerRequest);
 
