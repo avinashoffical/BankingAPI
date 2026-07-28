@@ -1,10 +1,9 @@
 package com.avinash.BankingAPI.entity;
 
-import com.avinash.BankingAPI.entity.enums.LoanStatus;
-import com.avinash.BankingAPI.entity.enums.LoanType;
+import com.avinash.BankingAPI.enums.LoanStatus;
+import com.avinash.BankingAPI.enums.LoanType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;

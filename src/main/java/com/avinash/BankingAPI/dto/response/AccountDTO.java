@@ -1,7 +1,7 @@
 package com.avinash.BankingAPI.dto.response;
 
-import com.avinash.BankingAPI.entity.enums.AccountStatus;
-import com.avinash.BankingAPI.entity.enums.AccountType;
+import com.avinash.BankingAPI.enums.AccountStatus;
+import com.avinash.BankingAPI.enums.AccountType;
 import lombok.Data;
 
 import java.math.BigDecimal;

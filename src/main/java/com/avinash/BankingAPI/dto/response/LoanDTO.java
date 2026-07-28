@@ -1,7 +1,7 @@
 package com.avinash.BankingAPI.dto.response;
 
-import com.avinash.BankingAPI.entity.enums.LoanStatus;
-import com.avinash.BankingAPI.entity.enums.LoanType;
+import com.avinash.BankingAPI.enums.LoanStatus;
+import com.avinash.BankingAPI.enums.LoanType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

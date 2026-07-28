@@ -5,8 +5,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,7 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-public class JwtFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -27,7 +25,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            String jwt = parseJwt(request);
+            String jwt = extractJwtToken(request);
             if (jwt != null && jwtUtil.validateToken(jwt)) {
                 String username = jwtUtil.getUsernameFromJWTToken(jwt);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -41,15 +39,15 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    public String parseJwt(HttpServletRequest request) {
-        String jwtFromCookies = jwtUtil.getJwtFromCookies(request);
-        if (jwtFromCookies != null) {
-            return jwtFromCookies;
+    public String extractJwtToken(HttpServletRequest request) {
+        String jwtTokenFromCookies = jwtUtil.getJwtTokenFromCookies(request);
+        if (jwtTokenFromCookies != null) {
+            return jwtTokenFromCookies;
         }
 
-        String jwtFromHeader = jwtUtil.getJwtFromHeader(request);
-        if (jwtFromHeader != null) {
-            return jwtFromHeader;
+        String jwtTokenFromHeader = jwtUtil.getJwtTokenFromHeader(request);
+        if (jwtTokenFromHeader != null) {
+            return jwtTokenFromHeader;
         }
         return null;
     }

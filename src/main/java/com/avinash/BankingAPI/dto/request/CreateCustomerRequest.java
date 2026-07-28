@@ -1,6 +1,5 @@
 package com.avinash.BankingAPI.dto.request;
 
-import com.avinash.BankingAPI.entity.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 

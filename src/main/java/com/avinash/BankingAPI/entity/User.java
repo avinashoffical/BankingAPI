@@ -1,5 +1,6 @@
 package com.avinash.BankingAPI.entity;
 
+import com.avinash.BankingAPI.enums.RoleName;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -35,13 +36,11 @@ public class User {
     private String email;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinTable(name = "user_role",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
 
     @OneToOne(mappedBy = "user")
     private Customer customer;

@@ -1,6 +1,6 @@
 package com.avinash.BankingAPI.dto.request;
 
-import com.avinash.BankingAPI.entity.enums.AccountType;
+import com.avinash.BankingAPI.enums.AccountType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.avinash.BankingAPI.security;
 
-import com.avinash.BankingAPI.security.jwt.AuthEntryPointJwt;
-import com.avinash.BankingAPI.security.jwt.JwtFilter;
+import com.avinash.BankingAPI.security.jwt.JwtAuthEntryPoint;
+import com.avinash.BankingAPI.security.jwt.JwtAuthenticationFilter;
 import com.avinash.BankingAPI.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,11 +27,11 @@ public class SecurityConfig {
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
+    private JwtAuthEntryPoint unauthorizedHandler;
 
     @Bean
-    public JwtFilter authenticateJwtTokenFilter(){
-        return new JwtFilter();
+    public JwtAuthenticationFilter authenticateJwtTokenFilter(){
+        return new JwtAuthenticationFilter();
     }
 
     @Bean
@@ -52,7 +52,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http.csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

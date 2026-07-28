@@ -6,31 +6,37 @@ import com.avinash.BankingAPI.dto.response.AccountDTO;
 import com.avinash.BankingAPI.dto.response.BalanceResponse;
 import com.avinash.BankingAPI.entity.Account;
 import com.avinash.BankingAPI.entity.Customer;
-import com.avinash.BankingAPI.entity.enums.AccountStatus;
+import com.avinash.BankingAPI.entity.User;
+import com.avinash.BankingAPI.enums.AccountStatus;
+import com.avinash.BankingAPI.exception.ResourceNotFoundException;
 import com.avinash.BankingAPI.repository.AccountRepository;
 import com.avinash.BankingAPI.repository.CustomerRepository;
+import com.avinash.BankingAPI.repository.UserRepository;
 import com.avinash.BankingAPI.service.AccountService;
 import com.avinash.BankingAPI.util.AccountNumberGenerator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
     private final AccountNumberGenerator accountNumberGenerator;
     private final ModelMapper modelMapper;
 
     @Override
     public List<AccountDTO> getMyAccount() {
+        Customer customer = getLoggedInCustomer();
         return List.of();
     }
 
@@ -131,10 +137,16 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private Account verifyId(Long accountId) {
-        return accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found with id " + accountId));
+        return accountRepository.findById(accountId).orElseThrow(() -> new AccountNotFoundException("Account not found with id " + accountId));
     }
 
     private Account verifyAccountNumber(String accountNumber) {
-        return accountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new RuntimeException("Account not found with account number:"+accountNumber));
+        return accountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new AccountNotFoundException("Account not found with account number:"+accountNumber));
+    }
+
+    private Customer getLoggedInCustomer() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found with name:"+username));
+        return customerRepository.findByUser(user).orElseThrow(() -> new ResourceNotFoundException("User not found with user:"+user));
     }
 }

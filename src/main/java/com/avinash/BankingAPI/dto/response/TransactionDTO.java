@@ -1,8 +1,8 @@
 package com.avinash.BankingAPI.dto.response;
 
-import com.avinash.BankingAPI.entity.enums.PaymentMethod;
-import com.avinash.BankingAPI.entity.enums.TransactionStatus;
-import com.avinash.BankingAPI.entity.enums.TransactionType;
+import com.avinash.BankingAPI.enums.PaymentMethod;
+import com.avinash.BankingAPI.enums.TransactionStatus;
+import com.avinash.BankingAPI.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

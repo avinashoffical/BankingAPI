@@ -2,8 +2,7 @@ package com.avinash.BankingAPI.repository;
 
 import com.avinash.BankingAPI.entity.Account;
 import com.avinash.BankingAPI.entity.Customer;
-import com.avinash.BankingAPI.entity.enums.AccountType;
-import jakarta.validation.constraints.NotNull;
+import com.avinash.BankingAPI.enums.AccountType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

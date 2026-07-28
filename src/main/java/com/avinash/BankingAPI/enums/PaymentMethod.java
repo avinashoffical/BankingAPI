@@ -1,4 +1,4 @@
-package com.avinash.BankingAPI.entity.enums;
+package com.avinash.BankingAPI.enums;
 
 public enum PaymentMethod {
     CASH,

@@ -3,23 +3,22 @@ package com.avinash.BankingAPI.service;
 import com.avinash.BankingAPI.dto.request.*;
 import com.avinash.BankingAPI.dto.response.APIResponse;
 import com.avinash.BankingAPI.dto.response.JwtResponse;
-import com.avinash.BankingAPI.dto.response.UserResponse;
-import jakarta.validation.Valid;
+import com.avinash.BankingAPI.dto.response.MessageResponse;
 
 public interface AuthService {
-    APIResponse register(@Valid RegisterRequest registerRequest);
+    MessageResponse signup(SignupRequest signupRequest);
 
-    JwtResponse login(@Valid LoginRequest loginRequest);
+    JwtResponse login(LoginRequest loginRequest);
 
-    UserResponse getCurrentUser();
+    MessageResponse getCurrentUser();
 
-    APIResponse changePassword(@Valid ChangePasswordRequest changePasswordRequest);
+    APIResponse changePassword(ChangePasswordRequest changePasswordRequest);
 
     JwtResponse refreshToken(RefreshTokenRequest refreshTokenRequest);
 
     APIResponse logout();
 
-    APIResponse forgotPassword(ForgotPasswordRequest forgotPasswordRequest);
+    APIResponse forgotPassword();
 
     APIResponse resetPassword(ResetPasswordRequest resetPasswordRequest);
 }

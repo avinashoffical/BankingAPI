@@ -7,7 +7,6 @@ import com.avinash.BankingAPI.dto.response.BeneficiaryDTO;
 import com.avinash.BankingAPI.entity.Beneficiary;
 import com.avinash.BankingAPI.entity.Customer;
 import com.avinash.BankingAPI.entity.User;
-import com.avinash.BankingAPI.exception.CustomerNotFoundException;
 import com.avinash.BankingAPI.exception.DuplicateResourceException;
 import com.avinash.BankingAPI.exception.ResourceNotFoundException;
 import com.avinash.BankingAPI.repository.BeneficiaryRepository;
@@ -96,7 +95,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
     private Customer getLoggedInCustomer() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
-        return customerRepository.findByUser(user).orElseThrow(() -> new CustomerNotFoundException("Customer not found"));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found with name:"+username));
+        return customerRepository.findByUser(user).orElseThrow(() -> new ResourceNotFoundException("User not found with user:"+user));
     }
 }

@@ -3,7 +3,7 @@ package com.avinash.BankingAPI.controller;
 import com.avinash.BankingAPI.dto.request.*;
 import com.avinash.BankingAPI.dto.response.APIResponse;
 import com.avinash.BankingAPI.dto.response.JwtResponse;
-import com.avinash.BankingAPI.dto.response.UserResponse;
+import com.avinash.BankingAPI.dto.response.MessageResponse;
 import com.avinash.BankingAPI.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +17,18 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/register")
-    public ResponseEntity<APIResponse> register(@Valid @RequestBody RegisterRequest registerRequest) {
-        return new ResponseEntity<>(authService.register(registerRequest),HttpStatus.CREATED);
+    @PostMapping("/signup")
+    public ResponseEntity<MessageResponse> signup(@Valid @RequestBody SignupRequest signupRequest) {
+        return new ResponseEntity<>(authService.signup(signupRequest),HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<MessageResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
         return new ResponseEntity<>(authService.login(loginRequest),HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserResponse> getCurrentUser() {
+    public ResponseEntity<MessageResponse> getCurrentUser() {
         return new ResponseEntity<>(authService.getCurrentUser(),HttpStatus.OK);
     }
 
@@ -48,8 +48,8 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<APIResponse> forgotPassword(@RequestBody ForgotPasswordRequest forgotPasswordRequest) {
-        return new ResponseEntity<>(authService.forgotPassword(forgotPasswordRequest),HttpStatus.OK);
+    public ResponseEntity<APIResponse> forgotPassword() {
+        return new ResponseEntity<>(authService.forgotPassword(),HttpStatus.OK);
     }
 
     @PostMapping("/reset-password")

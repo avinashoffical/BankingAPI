@@ -1,12 +1,11 @@
 package com.avinash.BankingAPI.entity;
 
-import com.avinash.BankingAPI.entity.enums.PaymentMethod;
-import com.avinash.BankingAPI.entity.enums.TransactionStatus;
-import com.avinash.BankingAPI.entity.enums.TransactionType;
+import com.avinash.BankingAPI.enums.PaymentMethod;
+import com.avinash.BankingAPI.enums.TransactionStatus;
+import com.avinash.BankingAPI.enums.TransactionType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;

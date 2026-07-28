@@ -1,11 +1,8 @@
 package com.avinash.BankingAPI.entity;
 
-import com.avinash.BankingAPI.entity.enums.AccountStatus;
-import com.avinash.BankingAPI.entity.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

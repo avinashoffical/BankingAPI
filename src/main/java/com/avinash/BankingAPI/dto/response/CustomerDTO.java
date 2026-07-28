@@ -1,7 +1,5 @@
 package com.avinash.BankingAPI.dto.response;
 
-import com.avinash.BankingAPI.entity.enums.AccountStatus;
-import com.avinash.BankingAPI.entity.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

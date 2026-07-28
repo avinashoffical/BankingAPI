@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class RegisterRequest {
+public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 30)
     private String username;
@@ -20,12 +20,4 @@ public class RegisterRequest {
     @Email
     private String email;
 
-    @NotBlank
-    private String firstName;
-
-    @NotBlank
-    private String lastName;
-
-    @Pattern(regexp = "^[6-9]\\d{9}$")
-    private String phoneNumber;
 }

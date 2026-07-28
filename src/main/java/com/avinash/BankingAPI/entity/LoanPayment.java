@@ -1,9 +1,8 @@
 package com.avinash.BankingAPI.entity;
 
-import com.avinash.BankingAPI.entity.enums.LoanType;
-import com.avinash.BankingAPI.entity.enums.PaymentMethod;
+import com.avinash.BankingAPI.enums.LoanType;
+import com.avinash.BankingAPI.enums.PaymentMethod;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
